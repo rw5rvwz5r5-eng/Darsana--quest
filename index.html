@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PELAYARAN SAD DARSANA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Figtree:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e6f5f2;--bg2:#bfe4e2;--ink:#0b2f45;--mu:#3e6577;--c:#ffffffcc;--bd:#0b2f4522;--ac:#0b6e7f;--go:#f2b705;--ok:#1a9a6b;--no:#d6455d;--sea:#0b6e7f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08222f;--bg2:#0b3346;--ink:#e8f6f3;--mu:#9cc3cf;--c:#ffffff14;--bd:#ffffff26;--ac:#5fd0d8}}
+:root[data-theme="dark"]{--bg:#08222f;--bg2:#0b3346;--ink:#e8f6f3;--mu:#9cc3cf;--c:#ffffff14;--bd:#ffffff26;--ac:#5fd0d8}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background-color:var(--bg);background-image:linear-gradient(var(--bg),var(--bg2));background-attachment:fixed;color:var(--ink);font:400 16px/1.55 Figtree,system-ui,sans-serif;min-height:100vh}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:.2em 0;line-height:1.1}
+h1{font-size:clamp(2.2rem,9vw,3.6rem);font-weight:800}h2{font-size:1.5rem}h3{font-size:1.15rem;color:var(--ac)}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px 40px}
+.scr{display:none}.scr.on{display:block}
+.card{background:var(--c);border:1px solid var(--bd);border-radius:20px;padding:16px;margin:12px 0}
+button{font:800 1rem Figtree,sans-serif;border:0;border-radius:999px;padding:12px 20px;background:var(--go);color:#3a2a00;cursor:pointer;min-height:46px}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+button.gh{background:transparent;color:var(--ink);border:1.5px solid var(--bd)}button:disabled{opacity:.4}
+input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--c);color:var(--ink);font:inherit;margin:4px 0 10px}
+label{font-weight:700;font-size:.9rem}
+.hud{display:flex;gap:8px;align-items:center;justify-content:space-between;font-weight:800;font-size:.9rem;padding:8px 14px;background:var(--sea);color:#fff;border-radius:999px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.hud button{min-height:30px;padding:2px 10px;background:#ffffff33;color:#fff}
+.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--go);width:0;transition:width .6s}
+.hero{padding:28px 0 8px}.hero .sun{font-size:3.4rem;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tile{display:block;border-radius:22px;padding:16px 10px;background:var(--c);color:var(--ink);border:1px solid var(--bd);text-align:left}
+.tile b{font-size:1.7rem;display:block}.tile small{color:var(--mu);font-weight:400}
+.isl{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--c);color:var(--ink);border:1px solid var(--bd);margin:8px 0;padding:12px 16px;border-radius:20px}
+.isl .e{font-size:2rem}.isl small{display:block;font-weight:400;color:var(--mu)}.isl.lock{opacity:.5}
+.opt{display:block;width:100%;text-align:left;background:var(--c);color:var(--ink);border:2px solid var(--bd);margin:8px 0;border-radius:16px;font-weight:700}
+.opt.ok{border-color:var(--ok);background:#1a9a6b33}.opt.no{border-color:var(--no);background:#d6455d33}
+.sea{position:relative;height:190px;border-radius:24px;overflow:hidden;background:linear-gradient(#8fd8f0,#e9f8ff 58%,#0b6e7f 58%);margin-bottom:10px;border:1px solid var(--bd)}
+.sea .sn{position:absolute;top:10px;left:14px;font-size:2rem}.sea .storm{position:absolute;top:8px;right:38%;font-size:2rem;opacity:0;transition:.3s}
+.sea.st{background:linear-gradient(#5b6b80,#a7b4c4 58%,#0a4f5c 58%)}.sea.st .storm{opacity:1}
+.wv{position:absolute;left:-10%;width:130%;bottom:0;height:70px;background:radial-gradient(circle at 20px 0,transparent 16px,#ffffff44 17px) 0 0/40px 24px repeat-x;animation:wv 6s linear infinite}
+.wv.b{bottom:-12px;animation-duration:9s;opacity:.7}@keyframes wv{to{transform:translateX(-40px)}}
+.bt{position:absolute;bottom:38px;left:var(--x,6%);font-size:3rem;transition:left 1.1s ease-in-out;animation:rk 3s ease-in-out infinite}
+@keyframes rk{50%{transform:translateY(5px) rotate(3deg)}}
+.bt.hit{animation:sh .6s}@keyframes sh{20%{transform:rotate(-18deg)}50%{transform:rotate(16deg)}80%{transform:rotate(-8deg)}}
+.pu{position:absolute;right:5%;bottom:42px;font-size:3.6rem;transition:filter .5s,transform .5s}.pu.glow{filter:drop-shadow(0 0 18px #f2b705);transform:scale(1.15)}
+.life{position:absolute;top:8px;right:12px;font-size:1.2rem}
+.pr{position:fixed;pointer-events:none;font-size:1.4rem;z-index:50;animation:up 1s ease-out forwards}
+@keyframes up{to{transform:translate(var(--dx),-110px) scale(.4);opacity:0}}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:40;animation:fo .5s forwards}@keyframes fo{from{opacity:.4}to{opacity:0}}
+.ex{font-size:.95rem;color:var(--ac);margin-top:6px;min-height:1.4em;font-weight:700}
+.tabs{display:flex;gap:4px;justify-content:center;margin:10px 0;flex-wrap:wrap}.tabs i{width:16px;height:6px;border-radius:5px;background:var(--bd)}.tabs i.on{background:var(--go)}
+.kv{display:flex;flex-direction:column;gap:6px}.kv span{padding:8px 12px;border-radius:12px;background:var(--c);border:1px solid var(--bd)}
+.mod{position:fixed;inset:0;background:#04141d99;display:none;align-items:center;justify-content:center;z-index:60;padding:16px}.mod.on{display:flex}
+.mod .card{background:var(--bg);max-width:440px;width:100%;max-height:90vh;overflow:auto}
+.big{font-size:3.2rem;text-align:center}
+.cert{background:#fffaf0;color:#0b2f45;border:6px double #0b6e7f;border-radius:10px;padding:20px;text-align:center}.cert h2{color:#0b6e7f}
+@media print{body *{visibility:hidden}#certbox,#certbox *{visibility:visible}#certbox{position:absolute;left:0;top:0;width:100%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><div class="wrap">
+
+<section class="scr on" id="s-home"><div class="hero"><div class="sun">⛵</div><h1>Pelayaran Sad Darsana</h1><p style="color:var(--mu)">Media Pembelajaran Interaktif Pendidikan Agama Hindu dan Budi Pekerti, Kelas XI Fase F.</p></div>
+<div class="card"><p style="margin:0">🧓 <b>Nakhoda Brahmana:</b> Om Swastyastu. Darsana berarti "melihat", yaitu cara memandang kebenaran. Ikut aku berlayar ke enam pulau, lalu hadapi Final Quest.</p></div>
+<div class="card"><label for="nm">Nama lengkap</label><input id="nm" autocomplete="name"><label for="kl">Kelas</label><input id="kl"><label for="sk">Sekolah</label><input id="sk"><button style="width:100%" onclick="reg()">Naik ke kapal</button></div></section>
+
+<section class="scr" id="s-hub"><div class="hud"><span id="hl"></span><span id="hx"></span><span id="hb"></span><button onclick="snd=!snd;this.textContent=snd?'🔊':'🔇'">🔊</button></div>
+<h2 id="hi" style="margin-top:14px"></h2><div class="bar"><i id="hp"></i></div><small id="ht" style="color:var(--mu)"></small>
+<div class="grid"><button class="tile" onclick="learn(0)"><b>📜</b>Belajar<br><small>14 kartu materi</small></button><button class="tile" onclick="show('s-map')"><b>🧭</b>Peta Pelayaran<br><small>6 pulau + Final Quest</small></button><button class="tile" onclick="openMod('m-info')"><b>📖</b>Petunjuk<br><small>Tujuan & sumber</small></button><button class="tile" onclick="openMod('m-prof')"><b>🐚</b>Profil<br><small>Skor & permata</small></button><button class="tile" onclick="openRef()"><b>✍️</b>Refleksi<br><small>Tulis pesanmu</small></button><button class="tile" onclick="openCert()"><b>🏅</b>Sertifikat<br><small id="cs"></small></button></div></section>
+
+<section class="scr" id="s-learn"><button class="gh" onclick="show('s-hub')">← Kembali</button><div class="tabs" id="tabs"></div><div class="card" id="lc" style="min-height:340px"></div>
+<div style="display:flex;justify-content:space-between"><button class="gh" onclick="learn(li-1)">◀ Kembali</button><button id="ln" onclick="learn(li+1)">Lanjut ▶</button></div></section>
+
+<section class="scr" id="s-map"><button class="gh" onclick="show('s-hub')">← Kembali</button><h2 style="margin-top:12px">Peta Pelayaran</h2><p style="color:var(--mu)">Tuntaskan tiap pulau berurutan (5 soal, 3 pelampung). Setelah 6 pulau, buka Final Quest 10 soal.</p><div id="zones"></div></section>
+
+<section class="scr" id="s-quiz"><div class="hud"><span id="qz"></span><span id="qh"></span><span id="qx"></span></div>
+<div class="sea" id="sea"><div class="sn">☀️</div><div class="storm">🌩️</div><div class="life" id="lf"></div><div class="pu" id="pu">🏝️</div><div class="bt" id="bt">⛵</div><div class="wv"></div><div class="wv b"></div></div>
+<div class="card"><div id="kt" style="font-size:.9rem;color:var(--mu);margin-bottom:6px"></div><h3 id="qq" style="color:var(--ink)"></h3><div id="qo"></div><div class="ex" id="qe"></div><button id="qn" style="width:100%;display:none;margin-top:8px" onclick="nextQ()">Lanjut berlayar</button></div>
+<button class="gh" style="width:100%" onclick="show('s-map')">Keluar ke peta</button></section></div>
+
+<div class="mod" id="m-end"><div class="card" style="text-align:center"><div class="big" id="ee"></div><h2 id="et"></h2><p id="ep"></p><button id="eb" onclick="closeMod('m-end');show('s-map')">Kembali ke peta</button></div></div>
+<div class="mod" id="m-info"><div class="card"><h2>Tujuan & Petunjuk</h2><h3>Tujuan pembelajaran</h3><div class="kv" style="font-size:.92rem"><span>Menjelaskan pengertian dan tujuan mempelajari Darsana</span><span>Mengidentifikasi Sad Darsana dan menghubungkannya dengan kehidupan</span><span>Bekerja sama, berkarya, dan merefleksikan nilai Darsana</span></div><h3>Petunjuk</h3><p style="font-size:.92rem;margin:4px 0">Awali dengan Om Swastyastu. Baca Belajar dulu, lalu berlayar. Jawab benar untuk memajukan kapal, jawab salah dan badai mengurangi pelampung. Tuntaskan semua pulau untuk membuka Final Quest, Refleksi, dan Sertifikat.</p><h3>Sumber</h3><p style="font-size:.9rem;margin:4px 0;color:var(--mu)">LKPD Darsana SMA Negeri 1 Gianyar (2026); buku Pendidikan Agama Hindu dan Budi Pekerti; Nyaya Sutra, Yoga Sutra, Brahma Sutra.</p><button onclick="closeMod('m-info')">Tutup</button></div></div>
+<div class="mod" id="m-prof"><div class="card"><h2>Profil & Skor</h2><p id="pi"></p><div id="pb"></div><div style="display:flex;gap:8px;margin-top:12px"><button class="gh" onclick="closeMod('m-prof')">Tutup</button><button class="gh" onclick="closeMod('m-prof');openMod('m-rs')">Reset data</button></div></div></div>
+<div class="mod" id="m-rs"><div class="card"><h3>Hapus semua progres?</h3><p>XP, skor, permata, dan refleksi akan dihapus permanen.</p><div style="display:flex;gap:8px"><button class="gh" onclick="closeMod('m-rs')">Batal</button><button onclick="resetAll()">Ya, hapus</button></div></div></div>
+<div class="mod" id="m-ref"><div class="card"><h2>Refleksi Penjelajah</h2><p>Satu nilai Darsana yang akan saya terapkan dalam kehidupan adalah...</p><textarea id="rf" rows="4"></textarea><div style="display:flex;gap:8px"><button class="gh" onclick="closeMod('m-ref')">Nanti</button><button onclick="saveRef()">Simpan</button></div></div></div>
+<div class="mod" id="m-cert"><div class="card" style="background:none;border:0;padding:0"><div id="certbox" class="cert"><div style="font-size:2.4rem">🧭</div><h2>Sertifikat Pelayaran</h2><p>Materi Darsana (Sistem Filsafat Hindu) diberikan kepada</p><h2 id="cn"></h2><p id="cc"></p><p>telah menuntaskan enam pulau dan Final Quest pada media <b>Pelayaran Sad Darsana</b>.</p><p><b id="cx"></b> · <b id="cl"></b> · Predikat: <b id="cp"></b></p><p style="font-style:italic" id="cr"></p><p style="font-size:1.4rem">🏝️🏝️🏝️🏝️🏝️🏝️</p></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="gh" style="background:var(--bg)" onclick="closeMod('m-cert')">Tutup</button><button onclick="window.print()">Cetak / simpan</button></div></div></div>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var S={n:'',k:'',s:'',done:[],b:{},ref:''},snd=true,li=0,z=0,qi=0,hp=3,ok=0,lock=false,cur=[],opts=[];
+try{var d=localStorage.getItem('sd2');if(d)S=JSON.parse(d)}catch(e){}
+function save(){try{localStorage.setItem('sd2',JSON.stringify(S))}catch(e){}}
+var ac;function beep(f,t,ty){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.value=.08;g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+t);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+t)}catch(e){}}
+function good(){beep(660,.15);setTimeout(function(){beep(880,.25)},120)}function bad(){beep(160,.4,'sawtooth')}
+function xp(){var s=0;for(var k in S.b)s+=S.b[k]*20;return s+S.done.length*30}
+function total(){var s=0;for(var k in S.b)s+=S.b[k];return s}
+var lv=function(){return Math.floor(xp()/150)+1};
+var RANK=['Pelaut Baru','Pencari Arah','Juru Mudi','Nakhoda Bijak','Pandita Laut','Nakhoda Darsana'];
+function show(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on')});$(id).classList.add('on');scrollTo(0,0);if(id=='s-hub'||id=='s-map')ref()}
+function openMod(i){if(i=='m-prof')prof();$(i).classList.add('on')}function closeMod(i){$(i).classList.remove('on')}
+function ref(){var l=lv(),r=xp()%150;$('hi').textContent='Om Swastyastu, '+(S.n.split(' ')[0]||'Pelaut');$('hl').textContent='⭐ Lv '+l;$('hx').textContent='✨ '+xp()+' XP';$('hb').textContent='🐚 '+S.done.length+'/7';
+$('hp').style.width=(r/150*100)+'%';$('ht').textContent=RANK[Math.min(l-1,5)]+' · '+(150-r)+' XP menuju Lv '+(l+1);$('cs').textContent=S.done.length>=7?'Siap dicetak':'Tuntaskan Final Quest';
+$('zones').innerHTML=Z.map(function(a,i){var o=i==0||S.done.indexOf(i-1)>-1,dn=S.done.indexOf(i)>-1;return '<button class="isl'+(o?'':' lock')+'" '+(o?'':'disabled')+' onclick="startZ('+i+')"><span class="e">'+(dn?a.gem:o?(i==6?'🏛️':'🏝️'):'🔒')+'</span><span><b>'+(i==6?'':'Pulau ')+a.name+'</b><small>'+(dn?'Tuntas · terbaik '+(S.b[i]||0)+'/'+a.q.length:o?a.key:'Terkunci')+'</small></span></button>'}).join('')}
+function reg(){var n=$('nm').value.trim();if(!n){$('nm').focus();$('nm').style.borderColor='#d6455d';return}S.n=n;S.k=$('kl').value;S.s=$('sk').value;save();beep(520,.2);show('s-hub')}
+function skor(){return Math.round(total()/40*100)}
+function pred(s){return s>=90?'Sangat Baik':s>=75?'Baik':s>=60?'Cukup':'Perlu Berlatih'}
+function prof(){$('pi').innerHTML='<b>'+S.n+'</b><br>'+S.k+' · '+S.s+'<br>Level '+lv()+' · '+xp()+' XP<br>Skor keseluruhan: <b>'+skor()+'</b> ('+pred(skor())+')';$('pb').innerHTML=Z.map(function(a,i){return S.done.indexOf(i)>-1?a.gem+' '+a.name+' · '+(S.b[i]||0)+'/'+a.q.length:'🔒 ???'}).join('<br>')}
+function resetAll(){S={n:'',k:'',s:'',done:[],b:{},ref:''};try{localStorage.removeItem('sd2')}catch(e){}closeMod('m-rs');$('nm').value=$('kl').value=$('sk').value='';show('s-home')}
+function lock2(m){$('ee').textContent='🔒';$('et').textContent='Belum terbuka';$('ep').textContent=m;$('eb').onclick=function(){closeMod('m-end')};openMod('m-end')}
+function openRef(){if(S.done.indexOf(6)<0){lock2('Refleksi terbuka setelah Final Quest tuntas.');return}$('rf').value=S.ref||'';openMod('m-ref')}
+function saveRef(){S.ref=$('rf').value.trim();save();closeMod('m-ref');beep(700,.2);openCert()}
+function openCert(){if(S.done.indexOf(6)<0){lock2('Tuntaskan 6 pulau dan Final Quest dulu.');return}$('cn').textContent=S.n;$('cc').textContent=S.k+' · '+S.s;$('cx').textContent='Skor '+skor();$('cl').textContent='Lv '+lv();$('cp').textContent=pred(skor());$('cr').textContent=S.ref?'"'+S.ref+'"':'';openMod('m-cert')}
+
+/* Data: q = [pertanyaan, jawaban benar, salah1, salah2, salah3, penjelasan] (opsi diacak otomatis) */
+var Z=[
+{name:'Nyaya',gem:'🔷',key:'Logika dan pramana',t:'Rsi Gautama (Aksapada Gautama)',f:'Logika, penalaran, dan pengetahuan yang benar',k:'Pramana: pratyaksa (pengamatan), anumana (penyimpulan), upamana (perbandingan), sabda (kesaksian)',kit:'Nyaya Sutra',p:'Sebelum mempercayai informasi di media sosial, periksa sumber, bukti, dan alasannya.',q:[
+['Darsana yang memberi perhatian besar pada logika dan penalaran adalah...','Nyaya','Yoga','Mimamsa','Vedanta','Nyaya = logika, penalaran, pengetahuan benar.'],
+['Tokoh yang dikenal dalam tradisi Nyaya adalah...','Rsi Gautama','Rsi Kapila','Rsi Jaimini','Rsi Patanjali','Nyaya dikaitkan dengan Rsi Gautama/Aksapada.'],
+['Cara memperoleh pengetahuan yang benar dalam Nyaya disebut...','Pramana','Prakrti','Yajña','Asana','Pramana meliputi pengamatan, penyimpulan, perbandingan, dan kesaksian.'],
+['Kemampuan yang dilatih oleh Nyaya adalah...','Menganalisis informasi dan menarik kesimpulan logis','Menghafal tanpa memahami','Menghindari semua pertanyaan','Mempercayai semua kabar','Nyaya melatih berpikir logis dan menganalisis.'],
+['Penerapan Nyaya saat menerima kabar di media sosial adalah...','Memeriksa sumber dan bukti dahulu','Langsung membagikan ke teman','Mengikuti pendapat mayoritas','Percaya jika kabarnya menarik','Berpikir kritis: cek sumber sebelum menyebarkan.']]},
+{name:'Vaiseshika',gem:'🟢',key:'Realitas dan kategori',t:'Rsi Kanada',f:'Hakikat realitas dan kategori-kategorinya',k:'Padartha (kategori realitas) dan paramanu (atom sebagai unsur terkecil)',kit:'Vaiseshika Sutra',p:'Mengelompokkan dan mengidentifikasi objek atau fenomena secara sistematis saat meneliti.',q:[
+['Tokoh yang dikenal dalam Vaiseshika adalah...','Rsi Kanada','Rsi Gautama','Rsi Badarayana','Rsi Patanjali','Vaiseshika dikaitkan dengan Rsi Kanada.'],
+['Vaiseshika memberi perhatian pada...','Hakikat realitas dan kategori-kategorinya','Pelaksanaan yadnya','Pengendalian pikiran','Bagian akhir Weda','Fokus Vaiseshika: hakikat realitas dan kategorinya.'],
+['Kategori-kategori realitas dalam Vaiseshika disebut...','Padartha','Purusa','Pramana','Sraddha','Padartha = kategori yang ada dalam realitas.'],
+['Unsur terkecil penyusun benda dalam Vaiseshika disebut...','Paramanu (atom)','Purusa','Citta','Sattwa','Paramanu mirip gagasan atom.'],
+['Penerapan Vaiseshika dalam penelitian adalah...','Mengelompokkan objek secara sistematis','Menebak hasil tanpa data','Menyalin pekerjaan teman','Mengabaikan data','Realitas dapat dikaji dan dikategorikan sistematis.']]},
+{name:'Samkhya',gem:'🟣',key:'Purusa dan Prakrti',t:'Rsi Kapila',f:'Penjelasan realitas melalui Purusa dan Prakrti',k:'Purusa (kesadaran), Prakrti (materi/alam), dan Tri Guna: Sattwa, Rajas, Tamas',kit:'Samkhya Karika (tradisi Samkhya)',p:'Menyadari bahwa hidup bukan hanya soal materi, tetapi juga kesadaran.',q:[
+['Tokoh yang secara tradisional dikaitkan dengan Samkhya adalah...','Rsi Kapila','Rsi Jaimini','Rsi Patanjali','Rsi Gautama','Samkhya dikaitkan dengan Rsi Kapila.'],
+['Prinsip kesadaran dalam Samkhya disebut...','Purusa','Prakrti','Guna','Karma','Purusa = prinsip kesadaran.'],
+['Prakrti dipahami sebagai prinsip...','Materi atau alam','Kesadaran','Ritual','Logika','Prakrti = materi atau alam.'],
+['Tri Guna terdiri atas...','Sattwa, Rajas, Tamas','Yama, Niyama, Asana','Dharma, Artha, Kama','Dravya, Guna, Karma','Sattwa (tenang), Rajas (aktif), Tamas (lamban).'],
+['Pemahaman Samkhya menyadarkan bahwa kehidupan...','Tidak hanya soal materi, tetapi juga kesadaran','Hanya soal materi','Hanya soal ritual','Hanya soal logika','Purusa dan Prakrti: dua aspek yang perlu dipahami.']]},
+{name:'Yoga',gem:'🟡',key:'Disiplin dan Astangga Yoga',t:'Rsi Patanjali',f:'Disiplin dan pengendalian diri menuju keadaan spiritual lebih tinggi',k:'Astangga Yoga: Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana, Samadhi',kit:'Yoga Sutra',p:'Mengatur pikiran, mengendalikan emosi, menjaga konsentrasi, dan membangun kebiasaan disiplin.',q:[
+['Tokoh utama sistem Yoga adalah...','Rsi Patanjali','Rsi Kanada','Rsi Jaimini','Rsi Kapila','Yoga Sutra disusun Rsi Patanjali.'],
+['Kitab pokok Darsana Yoga adalah...','Yoga Sutra','Brahma Sutra','Nyaya Sutra','Mimamsa Sutra','Yoga Sutra = kitab pokok Yoga.'],
+['Delapan tahap dalam Yoga disebut...','Astangga Yoga','Catur Marga','Tri Hita Karana','Panca Yadnya','Astangga = delapan anggota.'],
+['Tahap Astangga Yoga setelah Pratyahara adalah...','Dharana','Asana','Yama','Samadhi','Urutan: ...Pranayama, Pratyahara, Dharana, Dhyana, Samadhi.'],
+['Penerapan Yoga bagi siswa adalah...','Mengendalikan emosi dan menjaga konsentrasi','Bertindak sesuka hati','Menghindari tanggung jawab','Menuruti setiap emosi','Yoga erat dengan disiplin dan pengendalian diri.']]},
+{name:'Mimamsa',gem:'🔴',key:'Weda, kewajiban, dan tindakan',t:'Rsi Jaimini',f:'Weda, kewajiban, dan pelaksanaan tindakan keagamaan',k:'Pelaksanaan kewajiban (dharma) berdasarkan prinsip dan ajaran Weda',kit:'Mimamsa Sutra',p:'Melaksanakan kewajiban belajar, menghormati orang tua dan guru, serta bertanggung jawab.',q:[
+['Tokoh yang dikenal dalam tradisi Mimamsa adalah...','Rsi Jaimini','Rsi Badarayana','Rsi Kanada','Rsi Gautama','Mimamsa dikaitkan dengan Rsi Jaimini.'],
+['Mimamsa memberi perhatian besar pada...','Weda, kewajiban, dan pelaksanaan tindakan keagamaan','Struktur atom modern','Seni pertunjukan','Ilmu pengobatan','Fokus Mimamsa: Weda, kewajiban, dan tindakan.'],
+['Kitab dasar Mimamsa adalah...','Mimamsa Sutra','Yoga Sutra','Brahma Sutra','Nyaya Sutra','Mimamsa Sutra karya tradisi Jaimini.'],
+['Kewajiban dalam Mimamsa dilaksanakan berdasarkan...','Prinsip dan ajaran yang menjadi landasannya','Selera pribadi','Tren sesaat','Kebetulan','Kewajiban punya landasan ajaran.'],
+['Contoh penerapan nilai Mimamsa bagi siswa adalah...','Menghormati orang tua dan guru serta mengerjakan tugas','Mengabaikan tugas','Menunda kewajiban','Menyalahkan orang lain','Nilai tanggung jawab dan kewajiban.']]},
+{name:'Vedanta',gem:'⚪',key:'Atman, Brahman, dan moksa',t:'Rsi Badarayana dan pemikir Vedanta berikutnya',f:'Realitas tertinggi, Atman, Brahman, dan pembebasan',k:'Hubungan Atman dan Brahman; tujuan akhir moksa',kit:'Upanisad dan Brahma Sutra',p:'Merenungkan hakikat diri, hubungan dengan realitas tertinggi, dan tujuan hidup.',q:[
+['Vedanta memiliki hubungan erat dengan...','Upanisad','Dhanurveda','Jyotisa','Chanda','Vedanta berpijak pada bagian akhir Weda: Upanisad.'],
+['Kata Vedanta dimaknai sebagai...','Akhir atau puncak Weda','Awal Weda','Ilmu logika','Ilmu bangunan','Veda + anta = akhir Weda.'],
+['Tokoh penting dalam perkembangan Vedanta adalah...','Rsi Badarayana','Rsi Kanada','Rsi Gautama','Rsi Kapila','Badarayana dikaitkan dengan Brahma Sutra.'],
+['Persoalan yang dibahas Vedanta adalah...','Realitas tertinggi, Atman, Brahman, dan pembebasan','Kategori benda saja','Tata cara logika saja','Ritual saja','Vedanta membahas Atman-Brahman dan moksa.'],
+['Tujuan akhir yang dituju dalam Vedanta adalah...','Moksa (pembebasan)','Kekayaan','Kemasyhuran','Kekuasaan','Moksa: pembebasan tertinggi.']]},
+{name:'Final Quest',gem:'👑',key:'Ujian gabungan Sad Darsana',t:'',f:'',k:'',kit:'',p:'',q:[
+['Istilah untuk sistem filsafat dalam tradisi Hindu adalah...','Darsana','Yajña','Dharma','Samsara','Darsana = melihat, pandangan.'],
+['Enam sistem filsafat Hindu dikenal dengan istilah...','Sad Darsana','Catur Marga','Tri Kaya Parisudha','Panca Sradha','Sad = enam.'],
+['Yang termasuk Sad Darsana adalah...','Nyaya, Yoga, Vedanta','Purana, Itihasa, Upaweda','Ramayana, Mahabharata, Purana','Ayurveda, Dhanurveda, Gandharvaveda','Sad Darsana: Nyaya, Vaiseshika, Samkhya, Yoga, Mimamsa, Vedanta.'],
+['Darsana yang berfokus pada logika dan penalaran adalah...','Nyaya','Yoga','Mimamsa','Vedanta','Nyaya = logika.'],
+['Tokoh yang dikaitkan dengan Samkhya adalah...','Rsi Kapila','Rsi Jaimini','Rsi Patanjali','Rsi Gautama','Kapila = Samkhya.'],
+['Konsep penting dalam Samkhya adalah...','Purusa dan Prakrti','Dharma dan Yajña','Sruti dan Smerti','Rta dan Karma','Purusa = kesadaran, Prakrti = materi.'],
+['Darsana yang erat dengan disiplin dan pengendalian diri adalah...','Yoga','Vaiseshika','Nyaya','Mimamsa','Yoga = disiplin diri.'],
+['Tokoh utama sistem Yoga adalah...','Rsi Patanjali','Rsi Kanada','Rsi Jaimini','Rsi Kapila','Patanjali = Yoga Sutra.'],
+['Mimamsa memberi perhatian besar pada...','Weda, kewajiban, dan tindakan keagamaan','Struktur atom modern','Seni pertunjukan','Ilmu pengobatan','Mimamsa = Weda dan kewajiban.'],
+['Vedanta memiliki hubungan erat dengan...','Upanisad','Dhanurveda','Jyotisa','Chanda','Vedanta = akhir Weda, Upanisad.']]}];
+
+var SI=[['Nyaya','A'],['Carwaka','N'],['Yoga','A'],['Jaina','N'],['Vedanta','A'],['Buddha','N'],['Samkhya','A']];
+function srt(i,a,b){var r=SI[i][1]==a;if(r){good();b.parentNode.innerHTML='✅ <b>'+SI[i][0]+'</b> = '+(a=='A'?'Astika':'Nastika')}else{bad();b.classList.add('no');b.disabled=true}}
+var L=[
+['🎯','Tujuan pembelajaran','<div class="kv"><span>Menjelaskan pengertian dan tujuan mempelajari Darsana</span><span>Mengidentifikasi enam sistem filsafat (Sad Darsana)</span><span>Menghubungkan pemikiran Darsana dengan kehidupan sehari-hari</span><span>Bekerja sama, berkarya, dan berefleksi</span></div>'],
+['🧭','Apa itu Darsana?','<p><b>Darsana</b> berkaitan dengan makna "melihat" atau "pandangan": sistem pemikiran yang berusaha memahami hakikat kehidupan, pengetahuan, kebenaran, dan tujuan manusia.</p><p><b>Mengapa dipelajari?</b> Darsana melatih kita berpikir, memahami pengetahuan, mencari kebenaran, dan mengarahkan hidup ke tujuan yang lebih tinggi.</p>'],
+['📚','Astika dan Nastika','<p><b>Astika</b>: aliran yang mengakui otoritas Weda. Enam Darsana termasuk Astika.</p><p><b>Nastika</b>: aliran yang tidak mengakui otoritas Weda, misalnya Carwaka, Jaina, dan Buddha.</p><p>Perbedaan cara pandang ini menjadi kekayaan pemikiran India.</p>'],
+['🧩','Aktivitas: kelompokkan','<p>Tentukan tiap aliran: Astika atau Nastika?</p>'+SI.map(function(x,i){return '<div class="kv" style="margin:6px 0"><span>'+x[0]+' &nbsp;<button class="gh" style="min-height:34px;padding:2px 12px" onclick="srt('+i+',\'A\',this)">Astika</button> <button class="gh" style="min-height:34px;padding:2px 12px" onclick="srt('+i+',\'N\',this)">Nastika</button></span></div>'}).join('')],
+['🗺️','Sad Darsana','<div class="kv"><span>1. Nyaya</span><span>2. Vaiseshika</span><span>3. Samkhya</span><span>4. Yoga</span><span>5. Mimamsa</span><span>6. Vedanta</span></div><p>Karakteristik dan fokusnya berbeda, namun semuanya menyumbang bagi perkembangan pemikiran Hindu.</p>']]
+.concat(Z.slice(0,6).map(function(a){return [a.gem,'Darsana '+a.name,'<div class="kv"><span><b>Tokoh:</b> '+a.t+'</span><span><b>Fokus:</b> '+a.f+'</span><span><b>Konsep utama:</b> '+a.k+'</span><span><b>Kitab:</b> '+a.kit+'</span><span><b>Penerapan:</b> '+a.p+'</span></div>']}))
+.concat([['⚖️','Membandingkan Darsana','<p><b>Persamaan:</b> semua mencari kebenaran dan mengarahkan manusia pada kehidupan lebih tinggi.</p><div class="kv"><span><b>Nyaya</b> · logika</span><span><b>Vaiseshika</b> · kategori realitas</span><span><b>Samkhya</b> · Purusa-Prakrti</span><span><b>Yoga</b> · disiplin diri</span><span><b>Mimamsa</b> · kewajiban dan Weda</span><span><b>Vedanta</b> · Atman-Brahman</span></div>'],
+['💡','Darsana dalam kehidupan','<div class="kv"><span><b>Kabar di media sosial:</b> periksa sumber dan bukti (Nyaya).</span><span><b>Mudah marah saat dikritik:</b> latih pengendalian diri (Yoga).</span><span><b>Ajakan teman vs tugas sekolah:</b> utamakan kewajiban (Mimamsa) dan renungkan tujuan hidup (Vedanta).</span></div>'],
+['🌅','Kesimpulan','<p>Belajar Darsana bukan hanya memahami pemikiran para filsuf Hindu, tetapi belajar melihat kehidupan dengan lebih sadar, berpikir kritis, dan bertindak bijaksana.</p><p>Siap berlayar? Buka Peta Pelayaran.</p>']]);
+function learn(i){if(i<0){show('s-hub');return}if(i>=L.length){show('s-map');return}li=i;var a=L[i];$('lc').innerHTML='<div class="big">'+a[0]+'</div><h2>'+a[1]+'</h2>'+a[2];$('tabs').innerHTML=L.map(function(_,j){return '<i class="'+(j==i?'on':'')+'"></i>'}).join('');$('ln').textContent=i==L.length-1?'Ke Peta ⛵':'Lanjut ▶';show('s-learn')}
+
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function startZ(i){z=i;qi=0;hp=3;ok=0;cur=Z[i].q;$('pu').textContent=i==6?'🏛️':'🏝️';$('pu').className='pu';$('bt').style.setProperty('--x','6%');show('s-quiz');ask()}
+function hud(){$('lf').textContent='🛟'.repeat(hp)+'⚫'.repeat(3-hp);$('qz').textContent=(z==6?'':'Pulau ')+Z[z].name;$('qh').textContent='Soal '+(qi+1)+'/'+cur.length;$('qx').textContent='✅ '+ok}
+function ask(){lock=false;var q=cur[qi];opts=shuf([q[1],q[2],q[3],q[4]]);$('kt').textContent='Kata kunci: '+Z[z].key;$('qq').textContent=q[0];$('qe').textContent='';$('qn').style.display='none';$('sea').classList.remove('st');
+$('qo').innerHTML=opts.map(function(t,j){return '<button class="opt" onclick="pick('+j+',this)">'+'ABCD'[j]+'. '+t+'</button>'}).join('');hud()}
+function fx(em,n,el){var r=el.getBoundingClientRect();for(var i=0;i<n;i++){var p=document.createElement('div');p.className='pr';p.textContent=em[i%em.length];p.style.left=(r.left+r.width/2)+'px';p.style.top=(r.top+r.height/2)+'px';p.style.setProperty('--dx',(Math.random()*140-70)+'px');document.body.appendChild(p);setTimeout(function(x){x.remove()},1000,p)}}
+function flash(c){var f=document.createElement('div');f.className='flash';f.style.background=c;document.body.appendChild(f);setTimeout(function(){f.remove()},500)}
+function pick(j,b){if(lock)return;lock=true;var q=cur[qi],o=$('qo').children,bt=$('bt');
+if(opts[j]==q[1]){b.classList.add('ok');good();ok++;bt.style.setProperty('--x',(6+ok/cur.length*56)+'%');fx(['💦','✨','🐚'],9,bt);flash('#f2b705');$('qe').textContent='Angin berpihak! Kapal maju. '+q[5]}
+else{b.classList.add('no');for(var i=0;i<4;i++)if(opts[i]==q[1])o[i].classList.add('ok');bad();hp--;$('sea').classList.add('st');bt.classList.add('hit');setTimeout(function(){bt.classList.remove('hit')},700);fx(['⚡','💢','🌊'],7,bt);flash('#0b2f45');$('qe').textContent='Badai menghantam! '+q[5]}
+hud();$('qn').style.display='block';$('qn').textContent=(hp<=0||qi>=cur.length-1)?'Lihat hasil':'Lanjut berlayar'}
+function nextQ(){if(hp<=0||qi>=cur.length-1){end();return}qi++;ask()}
+function end(){var a=Z[z],n=cur.length;$('eb').onclick=function(){closeMod('m-end');show('s-map')};$('eb').textContent='Kembali ke peta';
+if(hp<=0){$('ee').textContent='🌊';$('et').textContent='Kapal hanyut';$('ep').textContent='Benar '+ok+'/'+n+'. Baca lagi materi '+a.name+', lalu berlayar kembali.';openMod('m-end');return}
+$('bt').style.setProperty('--x','62%');$('pu').classList.add('glow');beep(523,.15);setTimeout(function(){beep(659,.15)},150);setTimeout(function(){beep(784,.3)},300);
+var first=S.done.indexOf(z)<0;if(first)S.done.push(z);S.b[z]=Math.max(S.b[z]||0,ok);save();
+setTimeout(function(){fx(['🎉','💎','🪷','✨'],18,$('pu'));$('ee').textContent=a.gem;$('et').textContent=(z==6?'Final Quest':'Pulau '+a.name)+' tuntas!';
+var m='Benar '+ok+'/'+n+(first?' · +30 XP bonus. ':'. ');
+if(z==6){m+='Skor keseluruhan '+skor()+' ('+pred(skor())+'). Tulis refleksimu untuk membuka sertifikat.';$('eb').textContent='Isi refleksi';$('eb').onclick=function(){closeMod('m-end');show('s-hub');openRef()}}
+else m+=(z==5?'Final Quest terbuka!':'Pulau berikutnya terbuka.');
+$('ep').textContent=m;setTimeout(function(){openMod('m-end')},700)},1100)}
+if(S.n){show('s-hub')}
+</script></body></html>
